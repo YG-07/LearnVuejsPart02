@@ -1,3 +1,4 @@
+二、初步使用webpack （77）
 1.创建项目，index.html，文件夹: src开发资源(文件夹css、img、js，main.js)，dist发布
 2.创建入口文件main.js，和依赖func.js
   在func.js里导出：module.exports={变量1,...,函数1...}
