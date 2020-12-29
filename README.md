@@ -3,7 +3,7 @@
 ### 一.资料整理来源  
 coderwhy老师  B站账号：ilovecoding  
 bilibili URL：https://space.bilibili.com/36139192  
-视频 URL：https://www.bilibili.com/video/BV15741177Eh?p=76  
+视频(76-94p) URL：https://www.bilibili.com/video/BV15741177Eh?p=76  
   
 ### 二.webpack简介  
 webpack 对 CommonJS（require() 语句）  
