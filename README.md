@@ -1,4 +1,4 @@
-# LearnVuejsPart02  
+# LearnVuejsPart03  
 学习webpack的知识  
 ### 一.资料整理来源  
 coderwhy老师  B站账号：ilovecoding  
