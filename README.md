@@ -7,7 +7,6 @@ bilibili URL：https://space.bilibili.com/36139192
 视频(52-75p) URL：https://www.bilibili.com/video/BV15741177Eh?p=1
   
 # 二、本部分知识大纲
-#  
 (数字表示视频URL分p)
 ### 一、组件化开发原理和基本使用 (52-54)
 #### 1.1 创建组件构造器对象  
@@ -50,10 +49,58 @@ components: {
   模板代码
 </script>
 ```
-* 方法二，template标签，两种方法都要加id进行调用
+* 方法二(常用)，template标签，两种方法都要加id进行调用
 ```html
 <template id="cpn2">
   模板代码
 </template>
 ```
+
+#### 2.4 组件的数据存放
+* 组件的data属性必须是函数，返回一个新的对象
+```javascript
+    data(){
+      //组件不是共享的一个对象，要返回一个新的对象
+      return{
+        cnt:0
+      }
+    }
+```
+
+### 三、父子组件的通信 (59-66)
+#### 3.1 父传子 props，3种定义方法
+* 1.数组传递。不会检测数据类型，都用''括起来
+```javascript
+    props: ['getmsg', 'getcolors']
+```
+* 2.类型限制。可以是默认类型，也可是自定义类
+```javascript
+//默认类型有：String、Number、Boolean、Array、Object、Date、Function、Symbol等
+    getmsg:String,
+    getcolors:Array
+```
+* 3.类型限制和默认值。传递数组时，将default作为函数，返回一个数组
+```javascript
+    getmsg:{
+        type:String,
+        default:'hello 哇',
+        //required必要条件属性，bool值，缺少就报错
+        //required:true
+      },
+      getcolors:{
+        type: Array,
+        default(){
+          return []
+        },
+      }
+```
+#### 3.2 父传子props处理驼峰标识
+* 定义传递的数据名为驼峰标识时，如
+    * cInfo
+    * myChildNumber
+* 在使用父组件监听属性时，对应用：
+    * <cpn :c-info="info" :my-child-number="num"></cpn>
+
+#### 3.3 子传父 $emit()自定义事件方法
+* 
 
