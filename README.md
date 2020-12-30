@@ -67,7 +67,7 @@ components: {
     }
 ```
 
-### 三、父子组件的通信 (59-66)
+### 三、父子组件的通信 (59-63)
 #### 3.1 父传子 props，3种定义方法
 * 1.数组传递。不会检测数据类型，都用''括起来
 ```javascript
@@ -102,5 +102,29 @@ components: {
     * <cpn :c-info="info" :my-child-number="num"></cpn>
 
 #### 3.3 子传父 $emit()自定义事件方法
-* 
+* 1.定义方法
+```javascript
+    //子组件的按钮点击方法
+    btnClick(cate){
+        //$emit(自定义事件名,点击的元素)
+        this.$emit('childclick',cate)
+    }
+    //父组件的监听方法
+    cpnClick(item){
+        //打印元素名
+        console.log('cpn is click',item.name)
+    }
+```
+* 2.使用方法
+```html
+    <!-- 子组件的模板先通过categories数组生成按钮，每个都调用点击方法 -->
+    <button v-for="cate in categories"
+            @click="btnClick(cate)">
+      {{cate.name}}
+    </button>
+    <!-- 父组件监听，并使用父的自定义事件方法childclick,没有使用参数自动传监听的元素对象--> -->
+    <cpn @childclick="cpnClick"></cpn>
+```
+
+### 四、案例:父子组件的双向绑定 (64-66)
 
