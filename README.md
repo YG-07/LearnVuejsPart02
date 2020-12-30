@@ -1,10 +1,10 @@
 # LearnVuejsPart02
-学习组件化开发
+学习组件化开发，使用代码注意js的路径！
 
 ### 一.资料整理来源  
 coderwhy老师  B站账号：ilovecoding  
 bilibili URL：https://space.bilibili.com/36139192  
-视频(52-75p) URL：https://www.bilibili.com/video/BV15741177Eh?p=1
+视频(52-75p) URL：https://www.bilibili.com/video/BV15741177Eh?p=52
   
 # 二、本部分知识大纲
 (数字表示视频URL分p)
@@ -49,7 +49,7 @@ components: {
   模板代码
 </script>
 ```
-* 方法二(常用)，template标签，两种方法都要加id进行调用
+* 方法二(常用)，template标签，两种方法都要加id进行调用，还要加一个根标签
 ```html
 <template id="cpn2">
   模板代码
@@ -127,4 +127,13 @@ components: {
 ```
 
 ### 四、案例:父子组件的双向绑定 (64-66)
+#### 4.1 需求：(本案例模拟了一个汇率的功能)
+* 1.子组件先接收父组件数据，再通过输入框双向绑定子组件数据。
+* 2.将输入框的值再绑定父组件数据。
+* 3.将数据1、数据2始终同步成100倍关系
+
+#### 4.2 案例的详细图解
+视频 URL：https://www.bilibili.com/video/BV15741177Eh?p=65
+
+#### 4.3 (了解)组件的watch属性，监听数据的改变
 

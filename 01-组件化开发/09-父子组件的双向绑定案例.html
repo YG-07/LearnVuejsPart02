@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <div id="app">
+			<cpn :cnum1="num1" :cnum2="num2"
+			 @n1chev="num1Ch" @n2chev="num2Ch" ></cpn>
+			 <!-- 2.监听自定义事件向父组件发送改变的值，调用父组件方法 -->
+    </div>
+    <template id="cpn">
+      <div>
+        <h2>父组件数据1 props: {{cnum1}}</h2>
+        <h2>子组件数据1 data: {{dnum1}}</h2>
+        <!--1. v-model="cnum1"会有警告，避免绑定props的数据 -->
+				<!-- <input type="text" v-model="dnum1"> -->
+				<!-- 2.监听输入框事件，值发生改变调用子组件的方法 -->
+        <input type="text" :value="dnum1" @input="cnum1Ch" />
+        <h2>父组件数据2 props: {{cnum2}}</h2>
+        <h2>子组件数据2 data: {{dnum2}}</h2>
+        <!-- <input type="text" v-model="dnum2"> -->
+        <input type="text" :value="dnum2" @input="cnum2Ch" />
+      </div>
+    </template>
+    <script src="../../day02/js/vue.js"></script>
+    <script>
+    /*
+		需求：(本案例模拟了一个汇率的功能)
+		1.子组件先接收父组件数据，再通过输入框双向绑定子组件数据。
+		2.将输入框的值再绑定父组件数据。
+		3.将数据1、数据2始终同步成100倍关系
+		*/
+      const app = new Vue({
+        el: "#app",
+        data: {
+          num1: 1,
+          num2: 0
+        },
+        methods: {
+					num1Ch(value){
+						//或者value*1, 自动转成数字
+						this.num1=parseFloat(value)
+					},
+					num2Ch(value){
+						this.num2=parseFloat(value)	
+					}
+				},
+        components: {
+          cpn: {
+            template: "#cpn",
+            props: {
+              //限制类型
+              cnum1: Number,
+              cnum2: Number,
+            },
+            // 1.解决方案定义data值存储接收的数据
+            data() {
+              return {
+                dnum1: this.cnum1,
+                dnum2: this.cnum2,
+              };
+            },
+            methods: {
+							//2.获取输入事件的值，发送改变的值，自定义事件
+              cnum1Ch(event) {
+                this.dnum1 = event.target.value;
+								this.$emit("n1chev", this.dnum1);
+								//3.输入时，同步num1和num2
+								this.dnum2 = this.dnum1 * 100;
+                this.$emit("n2chev", this.dnum2);
+              },
+              cnum2Ch(event) {
+                this.dnum2 = event.target.value;
+								this.$emit("n2chev", this.dnum2);
+								this.dnum1 = this.dnum2 / 100 ;
+								this.$emit("n1chev", this.dnum1);
+              }
+						}
+						//watch属性 了解
+					}
+        }
+      });
+    </script>
+  </body>
+</html>
