@@ -10,7 +10,7 @@
   <!--在父组件里不能直接使用子组件数据-->
   <!--作用域插槽绑定自定义属性v-bind:，
   父组件使用template的slot-scope属性(自定义值)接收子组件的数据，
-  使用（值.子模板的数据名）接收-->
+  使用（插槽自定义变量名.子模板的数据名）接收-->
   <cpn>
     <template slot-scope="slot">
       <span v-for="item in slot.langs">{{item}} - </span>
