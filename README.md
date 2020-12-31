@@ -139,7 +139,29 @@ components: {
 
 #### 4.3 (了解)组件的watch属性，监听数据的改变
 
-
+### 五、父子组件的访问方式 (67-72)
+#### 5.1 父访问子方式：$children、$refs
+在父组件的按钮methods的里：  
+```javascript
+  btnClick(){
+    //1. $children，所有子组件，数组,一般不用下标访问，避免添加组件时引起的错位
+    console.log(this.$children[0].name)
+    //2. $refs,添加ref属性，在多个相同子组件时，（$refs.属性值）访问特定子组件
+    console.log(this.$refs.aaa)
+  }
+```
+#### 5.2 子访问父方式：$parent、$root
+在子组件的按钮methods的里：  
+```javascript
+  cbtnCk(){
+    //1. $parent,访问父组件。缺点：耦合度太高，复用性不足
+    console.log(this.$parent)
+    console.log(this.$parent.name)
+    //2. $root，访问根节点Vue。Vue实例的数据很少
+    console.log(this.$root.name)
+  }
+```
+  
 -----------文件夹 02-组件化高级 知识-----------
 
 
