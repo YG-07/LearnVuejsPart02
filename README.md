@@ -209,7 +209,7 @@ cbtnCk(){
 #### 1.4 编译作用域
 * 父组件模板的所有东西都会在父级作用域内编译；子组件模板的所有东西都会在子级作用域内编译  
   
-#### 1.5 作用域插槽
+#### 1.5 作用域插槽及案例
 * 1.父组件里不能直接使用子组件数据
 * 2.子组件的作用域插槽通过自定义属性v-bind绑定子组件的数据
 ```html
@@ -228,4 +228,44 @@ cbtnCk(){
 ```
   
 -----------文件夹 03-前端模块化 知识-----------  
+   
+### 一、模块化开发 (73-75)
+#### 1.1 为什么要模块化
+以前使用JavaScript面临的问题：  
+* 1.随着AJAX异步请求代码量剧增，需要多少js文件
+* 2.全局变量同名问题
+* 3.对js文件的依赖顺序是强制性的
+
+#### 1.2 解决方法
+* 1.匿名函数，使用模块作为出口
+```javascript
+// 1.导入方法，标签
+<script src="aaa.js"></script>
+<script>console.log(ModuleA.name)</script>
+// 2.ES6语法导入
+import * as info from "./aaa.js"
+console.log(info.name)
+
+;var ModuleA=(function () {
+  // 1.返回值导出对象
+  /*
+  var obj={}
+  ...
+  return obj
+  */
+})()
+// 2.CommonJS导出对象
+moduleB.exports={...}
+```
+* 2.常见的模块化规范：CommonJS、AMD、CMD、也有ES6的Modules
   
+#### 1.3 CommonJS语法(了解)
+* 导出 exports
+* 导入 require
+  
+#### 1.4 ES6语法
+* 导出 export ，可以导出变量，对象，函数/类，export default(在同一个模块只有一个，导入时自定义名字)
+* 导入 import ，使用script标签添加type="module"属性，使用{..,..}、* as name 导入
+  
+  
+----------以上就是本节知识---------  
